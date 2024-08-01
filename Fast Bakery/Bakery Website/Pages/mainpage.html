@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Fast Mart and Grocery</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://kit.fontawesome.com/8d7de18ad4.js" crossorigin="anonymous"></script>
+  <style>
+  .popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: rgba(204, 204, 204, 0.8); /* Semi-gray transparent background color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.popup-btn {
+  background-color: purple;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Animation effect when hovering over the button */
+.popup-btn:hover {
+  background-color: black; /* Darker purple color on hover */
+};
+  
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="navbar">
+	 <div class="animated-text">
+      <ul>
+	  
+        <img class="logo" src="get everything.jpg"  onclick="window.location.href='mainpage.html'" alt="Logo">
+        <li><a href="login.html">LOGIN PAGE</a></li>
+        <li><a href="https://www.google.com/maps/dir//FAST+University,+3+A.K.+Brohi+Road,+H-11%2F4+H+11%2F4+H-11,+Islamabad,+Islamabad+Capital+Territory/@33.656518,72.9453367,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x38dfbe1faaaaaaab:0x223386a2985e88f4!2m2!1d73.0153768!2d33.6565377">ADDRESS</a></li>
+        <li><a href="bakery.html">PRODUCTS</a></li>
+        <li><a href="contacts.html">CONTACT</a></li>
+        <li><a href="cart.html">MY CART</a></li>
+        <li><a href="sellers.html">TOP SELLER</a></li>
+      </ul>
+	  </div>
+    </div>
+  </header>
+
+  <div class="header">
+    <img src="brownbasket.jpg" alt="grocery" style="width:1100px;height: 350px;">
+  </div>
+
+  <div class="box">
+    <img src="labo.jpg" alt="LOGO" style="height: 500px;width:500px">
+  </div>
+
+  <div class="box2">
+    <img src="sululu.jpg" alt="LOGO"  onclick="window.location.href='orderpage.html'" style="height: 500px;width:500px">
+  </div>
+
+  <section class="footer">
+    <img class="logo" src="basket.jpg" alt="Logo" style="height:250px ;width: 200px;">
+	
+    <img src="feedback.jpg" onclick="window.location.href='feedback.html'" style="width:400px;height: 250px";>
+	
+    <div class="social">
+      <a href="https://www.instagram.com">M:Ibrahim
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com">Kaiwan
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://m.facebook.com">Sheriyar
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://m.facebook.com">Wasay
+        <i class="fab fa-instagram"></i>
+		<a href="https://m.facebook.com">Shameer
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Popup content -->
+  <div id="discountPopup" class="popup">
+    <span class="popup-close" onclick="closePopup()">&times;</span>
+    <p>Mark your calendars for awesome discounts!</p>
+    <a href="eventsh.html" class="popup-btn">Check Discounts</a>
+  </div>
+
+  <!-- Trigger the popup on page load -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("discountPopup").style.display = "block";
+    });
+
+    function closePopup() {
+      document.getElementById("discountPopup").style.display = "none";
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Needs</title>
+    <link rel="stylesheet" href="orderpage.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('showstopper.jpg'); /* Replace 'showstopper.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+       
+        nav {
+            background-color: #000;
+            padding: 15px;
+            text-align: center;
+			 width: 100%;
+			  width: 100%;
+	position: fixed ;
+	  z-index: 1000;
+	top : 0 ;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            margin: 0 10px;
+            font-size: 18px;
+        } 
+		
+        h1 {
+            text-align: center;
+            color: antiquewhite;
+            margin-top: 50px;
+        }
+
+        .container1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .box {
+            display: flex;
+            margin: 10px;
+        }
+
+        .box1,
+        .box2,
+        .box3 {
+            flex: 1;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .img-contain {
+            width: 50%; /* Adjust the width as needed */
+            height: 50%; /* Maintain a perfect square */
+            border-radius: 50%; /* Make the images circular */
+            object-fit: cover; /* Ensure the image covers the entire container */
+        }
+
+        .black-section {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        button {
+            text-transform: uppercase;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            background-color: #6b8e23;
+            color: #fff;
+            margin: 5px;
+            cursor: pointer;
+        }
+		
+			.btn {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Animation effect when hovering over the button */
+.btn:hover {
+  background-color: purple; /* Darker purple color on hover */
+};
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="mainpage.html">Home</a>
+        <a href="sellers.html">Top Sellers</a>
+        <a href="orderpage.html">Our Bakery</a>
+        <a href="cart.html">Cart</a>
+    </nav>
+    <h1>Basic Needs</h1>
+    <div class="container1">
+        <div class="box">
+            <div class="box1">
+                <img class="img-contain" src="egg.jpg" alt="">
+                <p>Eggs (dozen)</p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+            <div class="box2">
+                <img class="img-contain" src="pasta.jpg" alt="">
+                <p>Pasta (120 grams)</p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+            <div class="box3">
+                <img class="img-contain" src="cans.jpg" alt="">
+                <p>Cold drinks(3 a pacck)</p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box1">
+                <img class="img-contain" src="Samyang Carbonara Hot Chicken Ramen Noodles 5 Pack by World Market.jpg" alt="">
+                <p> Samyang Carbonara Hot Chicken Ramen </p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+            <div class="box2">
+                <img class="img-contain" src="Lipton Black Tea Bags, Unsweetened, Can Help Support a Healthy Heart, 100 Black Tea Bags.jpg" alt="">
+                <p>lipton teabag</p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+            <div class="box3">
+                <img class="img-contain" src="33 Funny Memes & Random Pics for the Weird & Wacky at Heart _ Team Jimmy Joe.jpg" alt="">
+                <p>lean beef (100 oz)</p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box1">
+                <img class="img-contain" src="Before & After_ H_ Padfield & Sons.jpg" alt="">
+                <p>H_ Padfield & Sons</p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+            <div class="box2">
+                <img class="img-contain" src="beans.jpg" alt="">
+                <p>frozen beans </p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+           
+			<div class="box3">
+                <img class="img-contain" src="  Nestle Nido Milk Powder, Imported from Holland, Specially Formulated, Fortified with Vitamins and Minerals, Easy To Prepare, over 12 months, 2 lbs.jpg" alt="">
+                <p>Nido (200 grams)</p>
+                <br><br>
+                <input type="number" name="number">
+				 <a  class="btn">Add to cart</a>
+            </div>
+			</body>
+			</html>

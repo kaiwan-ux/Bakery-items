@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YOUR CHOSEN ITEMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style3.css">
+    <!-- Add Bootstrap CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('carthehe.jpg'); /* Add your background image URL */
+            background-size: cover;
+            color: #fff; /* Text color */
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .project {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .shop {
+            flex: 1;
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for product boxes */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .box .content {
+            color: #fff;
+        }
+
+       .right-bar {
+    flex: 1;
+    padding: 0 20px;
+    background: rgba(169, 169, 169, 0.5); /* Semi-transparent gray background */
+}
+
+
+        /* Additional styles for the dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Style for the total box */
+        #total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4caf50; /* Green color */
+        }
+
+        /* Style for the payment link */
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Style for the apply discount button */
+        .btn-success {
+            background-color: #4caf50; /* Green color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-success:hover {
+            background-color: #45a049; /* Darker green color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1> YOUR CHOSEN ITEMS</h1>
+        <div class="project">
+            <div class="shop" id="shopContainer">
+                <!-- Product boxes will be dynamically added here -->
+            </div>
+            <div class="right-bar">
+                <h2>Chosen Items</h2>
+                <ul id="chosenItemsList"></ul>
+                <hr>
+                <p><span>Tax (0%)</span> <span id="tax">0Rs</span></p>
+                <hr>
+                <p><span>Shipping</span> <span id="shipping">120Rs</span></p>
+                <div class="dropdown">
+                    <button onclick="openProvinceDropdown()" class="btn btn-primary">Choose Province</button>
+                    <div id="provinceDropdown" class="dropdown-content">
+                        <a href="#" onclick="selectProvince('Punjab')">Punjab</a>
+                        <a href="#" onclick="selectProvince('Balochistan')">Balochistan</a>
+                        <a href="#" onclick="selectProvince('KPK')">KPK</a>
+                        <a href="#" onclick="selectProvince('Sindh')">Sindh</a>
+                    </div>
+                </div>
+                <hr>
+                <p><span>Total</span> <span id="total">1600Rs</span></p>
+                <!-- Add attachment of payment page -->
+                <a href="payment.html">PAYMENT</a>
+                <hr>
+                <button class="btn btn-success" onclick="applyDiscount()">Apply Discount</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript and Popper.js (for Bootstrap 5) via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Sample product data
+        const products = [
+            { name: 'starcut pizza', price: 1200, quantity: 2 },
+            { name: 'Crossiant', price: 350, quantity: 1 },
+            { name: 'macroons', price: 200, quantity: 1 }
+        ];
+
+        const taxPercentage = 0; // 0% tax
+        let shippingCharge = 120; // Default shipping charge
+
+        // Display initial products
+        displayProducts();
+
+        function displayProducts() {
+            const shopContainer = document.getElementById('shopContainer');
+            shopContainer.innerHTML = '';
+
+            products.forEach(product => {
+                const productBox = document.createElement('div');
+                productBox.classList.add('box');
+                productBox.innerHTML = `
+                    <div class="content">
+                        <h3>${product.name}</h3>
+                        <h4>Price: ${product.price}rs</h4>
+                        <p class="unit">Quantity: <input type="number" value="${product.quantity}" oninput="updateTotal(this, '${product.name}')"></p>
+                        <br>
+                    </div>
+                `;
+                shopContainer.appendChild(productBox);
+            });
+
+            updateTotal();
+            displayChosenItems();
+        }
+
+        function updateTotal(input, productName) {
+            // Ensure the input value is a non-negative integer
+            input.value = Math.max(0, Math.floor(input.value));
+
+            const totalQuantity = products.reduce((total, product) => total + product.quantity, 0);
+
+            if (totalQuantity === 0) {
+                // If every quantity is zero, set tax, shipping, and total to 0Rs
+                document.getElementById('tax').textContent = "0Rs";
+                document.getElementById('shipping').textContent = shippingCharge + "Rs";
+                document.getElementById('total').textContent = shippingCharge + "Rs";
+            } else {
+                let subTotal = products.reduce((total, product) => total + product.price * product.quantity, 0);
+                let tax = (subTotal * taxPercentage);
+                let total = subTotal + tax + shippingCharge;
+
+                // Update HTML elements
+                document.getElementById('tax').textContent = tax + "Rs";
+                document.getElementById('shipping').textContent = shippingCharge + "Rs";
+                document.getElementById('total').textContent = total + "Rs";
+            }
+
+            // Update the quantity in the products array
+            const productIndex = products.findIndex(product => product.name === productName);
+            products[productIndex].quantity = parseInt(input.value);
+
+            displayChosenItems();
+        }
+
+        function applyDiscount() {
+            // Prompt for discount code
+            const enteredCode = prompt("Enter discount code:");
+
+            // Apply discount if the code is correct
+            const discountCode = "fastnuces";
+            if (enteredCode === discountCode) {
+                const total = parseInt(document.getElementById('total').textContent);
+                const discount = (total * 10) / 100;
+                document.getElementById('total').textContent = Math.max(0, total - discount) + "Rs";
+            } else {
+                alert("Invalid discount code.");
+            }
+        }
+
+        function displayChosenItems() {
+            const chosenItemsList = document.getElementById('chosenItemsList');
+            chosenItemsList.innerHTML = '';
+
+            products.forEach(product => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${product.quantity} x ${product.name}`;
+                chosenItemsList.appendChild(listItem);
+            });
+        }
+
+        function openProvinceDropdown() {
+            document.getElementById("provinceDropdown").style.display = "block";
+            // Add event listener to close dropdown when clicking outside of it
+            document.addEventListener("click", closeProvinceDropdown);
+        }
+
+        function closeProvinceDropdown() {
+            document.getElementById("provinceDropdown").style.display = "none";
+            document.removeEventListener("click", closeProvinceDropdown);
+        }
+
+        function selectProvince(province) {
+            switch (province) {
+                case 'Punjab':
+                    shippingCharge = 120;
+                    break;
+                case 'Balochistan':
+                    shippingCharge = 500;
+                    break;
+                case 'KPK':
+                    shippingCharge = 300;
+                    break;
+                case 'Sindh':
+                    shippingCharge = 1000;
+                    break;
+            }
+            document.getElementById("shipping").textContent = shippingCharge + "Rs";
+            updateTotal(); // Update the total after changing the shipping charge
+            closeProvinceDropdown();
+        }
+    </script>
+</body>
+</html>

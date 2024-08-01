@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide Navbar</title>
+  <link rel="stylesheet" type="text/css" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+  <script>
+    function validateLogin() {
+      var username = document.getElementById("loginUsername").value;
+      var password = document.getElementById("loginPassword").value;
+
+      // Array of valid credentials
+      var validCredentials = [
+        { username: "khizra_sohail", password: "bestteacherfr" },
+        { username: "ibrahim", password: "9372" },
+		{ username: "kaiwan", password: "0083" },
+        // Add more credentials as needed
+      ];
+
+      var isValidCredential = validCredentials.some(function (cred) {
+        return cred.username === username && cred.password === password;
+      });
+
+      if (isValidCredential) {
+        alert("Login successful!");
+        window.location.href = "mainpage.html"; // Redirect to main page
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
+    }
+
+    function validateSignup() {
+      // Add your signup validation logic if needed
+      alert("Sign up functionality needs to be implemented with backend validation.");
+    }
+  </script>
+</head>
+
+<body>
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+      <form>
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="text" name="txt" placeholder="User name" required="">
+        <input type="email" name="email" placeholder="Email" required="">
+        <input type="password" name="pswd" placeholder="Password" required="">
+      </form>
+      <a href="javascript:void(0);" onclick="validateSignup()">
+        <button>Sign Up</button>
+      </a>
+    </div>
+
+    <div class="login">
+      <form>
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="text" id="loginUsername" name="username" placeholder="Username" required="">
+        <input type="password" id="loginPassword" name="pswd" placeholder="Password" required="">
+      </form>
+      <a href="javascript:void(0);" onclick="validateLogin()">
+        <button>Login</button>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>
